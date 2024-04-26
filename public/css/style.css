@@ -1,0 +1,32 @@
+
+#main-content{
+    border-radius:10px;
+    border-color:#9284a8;
+    height:850px;
+    background: url('login-background-image1.jpg') no-repeat;
+    background-size: 2000px 1000px;
+    /* background: linear-gradient(to bottom, #eee5fd, #c8b6ea); */
+}
+
+
+#button-main{
+    margin-top:40px;
+    height:70px;
+    text-align:center;
+}
+.section{
+    float:left;
+}
+#section1{
+    width:20%;
+    padding-left:20px;
+}
+#section2{
+    width:75%;
+}
+button{cursor: pointer;}
+
+a.active button{
+    background-color: #af2b41 ;
+    color: white!important;
+}

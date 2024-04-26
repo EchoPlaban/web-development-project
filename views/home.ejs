@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="main-content">
+            <div id="button-main">
+                <a class="active" href="/"><button style="background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);color: black; border-radius:8px; border-color: #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Home</b></button></a>&nbsp &nbsp
+                <a href="/about"><button style="background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">About</b></button></a>&nbsp &nbsp
+                <a href="/contact"><button style="background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Contact</b></button></a>
+                <%if(user == undefined){%>
+                <a href="/register"><button style="background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Register</b></button></a>
+                <a href="/login"><button style="background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Log in</b></button></a>
+                <%}else{%>
+                    <a href="/logout"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Logout</b></button></a>
+                <%}%>
+            </div>
+            <div>
+                <div class="section" id="section1">
+                    <h2>Features</h2><br>
+                    <a class="active" href="/"><button style="background-color: #af2b41;color: black;border: 3px solid #aa6c8d; padding: 6px 41px;"><b style="font-size: 16px;">Products</b></button></a><br><br><br>
+                    <a href="/add"><button style="background-color: #ede6f8;color: black;border: 3px solid #aa6c8d; padding: 6px 28px;"><b style="font-size: 16px;">Add Product</b></button></a><br><br><br>
+                </div>
+                <div class="section" id="section2">
+                    <div id="animation">
+                        <div class="whole-page">
+                            <div class="home">
+                                <h1 class="ml14">
+                                    <span class="text-wrapper">
+                                    <span class="letters" style="color: black">POPULAR &nbsp PRODUCTS</span>
+                                    <span class="line"></span>
+                                    </span>
+                                </h1>
+                            </div>
+                            
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+                
+                            <script type="text/javascript">
+                                    // Wrap every letter in a span
+                                    var textWrapper = document.querySelector('.ml14 .letters');
+                                    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+                
+                                    anime.timeline({loop: true})
+                                    .add({
+                                        targets: '.ml14 .line',
+                                        scaleX: [0,1],
+                                        opacity: [0.5,1],
+                                        easing: "easeInOutExpo",
+                                        duration: 900
+                                    }).add({
+                                        targets: '.ml14 .letter',
+                                        opacity: [0,1],
+                                        translateX: [40,0],
+                                        translateZ: 0,
+                                        scaleX: [0.3, 1],
+                                        easing: "easeOutExpo",
+                                        duration: 800,
+                                        offset: '-=600',
+                                        delay: (el, i) => 150 + 25 * i
+                                    }).add({
+                                        targets: '.ml14',
+                                        opacity: 0,
+                                        duration: 1000,
+                                        easing: "easeOutExpo",
+                                        delay: 1000
+                                    });
+                            </script>
+                        </div>
+                    </div>
+                    <hr style="height:2px;background: #b8acc2; background: linear-gradient(to bottom, #b8acc2, #796d83) ">
+                    <%products.forEach(function(value){%>
+                        <img style="width:200px; height:200px;" src="/image/<%=value.image%>"/>
+                        <p style="background-color: #e0dde5; width:500px; height: 30px;"><Span><b>Name:</b><%=value.name%></span> <span><b>Price:</b><%=value.price%></span>&nbsp;&nbsp;<a href="/update/<%=value.id%>">update</a>&nbsp;&nbsp;<a href="/delete/<%=value.id%>">delete</a></p>
+                    <%});%>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

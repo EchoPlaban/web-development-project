@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    </head>
+
+    <body>
+        <div id="main-content">
+            <div id="button-main">
+                <a href="/"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Home</b></button></a>&nbsp &nbsp
+                <a href="/about"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">About</b></button></a>&nbsp &nbsp
+                <a href="/contact"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Contact</b></button></a>
+                <%if(user == undefined){%>
+                <a href="/register"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Register</b></button></a>
+                <a href="/login"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Log in</b></button></a>
+                <%}else{%>
+                    <a href="/logout"><button style="background-color: #ede6f8;color: black;border: 2px solid #c4a2b4; padding: 6px 35px;"><b style="font-size: 16px;">Logout</b></button></a>
+                <%}%>
+            </div>
+            <div>
+                <div class="section" id="section1">
+                    <h2>Features</h2><br>
+                    <a href="/"><button style="background-color: #ede6f8;color: black;border-radius:8px; border-color: #aa6c8d; padding: 6px 41px;"><b style="font-size: 16px;">Products</b></button></a><br><br><br>
+                    <a href="/add"><button style="background-color: #ede6f8;color: black;border: 3px solid #aa6c8d; padding: 6px 28px;"><b style="font-size: 16px;">Add Product</b></button></a><br><br><br>
+                    
+                </div>
+                <div class="section" id="section2">
+                    <form action="/modify/<%=product.id%>" method="post" enctype="multipart/form-data"><br><br><br><br><br>
+                        <label for="name"><b style="font-size: 20px;">Product Name:</b></label>&nbsp &nbsp
+                        <input type="text" id="name" name="name" value="<%=product.name%>"><br><br>
+                        <label for="lname"><b style="font-size: 20px;">Product Price:</b></label>&nbsp &nbsp &nbsp
+                        <input type="text" id="lname" name="price" value="<%=product.price%>"><br><br>
+                        <img id="update-image" style="height:50px; width:50px;" src="/image/<%=product.image%>"/><br><br>
+                        <input type="file" onchange="loadFile(event)" id="myfile" name="myfile" style="display: none;"/><br><br>
+                        <label for="myfile" style="cursor: pointer;width:100px; height:60px;border:2px solid rgb(121, 112, 112);">Upload Image</label><br><br>
+                        <div class="submit">
+                            <input type="submit" style="background-color: #c24e4c; border-radius:7px;border-color:#933c45; padding: 5px 8px" value="Update Product"></input>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('update-image');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+</html>
